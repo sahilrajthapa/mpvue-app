@@ -1,0 +1,14 @@
+----sending question to question to question component ----
+ step 1:
+    if ("selectedQuestion has introQuestion" 
+              && "introQuestion rendering not finished")
+        
+      1.2: question=Introquestions[introQuestionCounter]  and
+              <question :question="question"/>
+ step 2: else          
+            question=Introquestions[coreQuestioncount] 
+            <question :question="question"/>         
+
+
+
+
