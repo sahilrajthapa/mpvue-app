@@ -10,11 +10,12 @@
 
     <div class="usermotto">
       <div class="user-motto">
-        <card :text="motto"></card>
+          <card :text="motto"></card>
       </div>
     </div>
 
     <form class="form-container">
+     <text>{{motto}}</text>
       <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
@@ -44,7 +45,8 @@ export default {
 
   methods: {   
     ...mapActions('profile',[
-       'setSid'
+       'setSid',
+        'setVerification'
     ]),
 
     bindViewTap () {
@@ -56,8 +58,7 @@ export default {
 
     },
     getUserInfo () {
-      var _this=this;
-      // 调用登录接口
+      let _this=this;
       wx.login({
         success: (res) => {
           if(res.code){
@@ -69,35 +70,12 @@ export default {
                 },
                 
                 success: function(res) {
-                    console.log("res",res.data);
-                    _this.sid = res.data.sid;
-                    _this.jsCodeDone = true;
                     _this.setSid(res.data.sid);
-                    _this.jsCodeDone && _this.userInfoDone && !res.verified && _this.setUserInfo();
+                    _this.setVerification(res.data.verified)
                 },
                 fail:function(error){
                     console.log("err",error)
                 }
-            });
-
-            wx.getSetting({
-              success: function (res) {
-                if (res.authSetting['scope.userInfo']) { 
-                  wx.getUserInfo({
-                      success: function(res) {
-                          console.log("res",res);
-                          _this.userInfo      = res.userInfo;
-                          _this.resData.encryptedData = res.encryptedData;
-                          _this.resData.iv = res.iv;
-                          _this.userInfoDone          = true;
-                          _this.jsCodeDone && _this.userInfoDone && !res.verified && _this.setUserInfo();
-                      },
-                      fail: function(data) {
-                          console.log("err in getting userinfo",data);
-                      }
-                  });
-                }
-              }
             })
           }
           
@@ -113,6 +91,14 @@ export default {
   created () {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo()
+  },
+  onUnload() {
+     this.motto = '';
+     console.log('unloaded', this)
+  },
+  onHide() {
+     console.log('onHide',this)
+     this.motto = '';
   }
 }
 </script>

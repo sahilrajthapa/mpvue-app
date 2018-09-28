@@ -42,7 +42,7 @@ module.exports = merge(baseWebpackConfig, {
     // copy from ./webpack.prod.conf.js
     // extract css into its own file
     new ExtractTextPlugin({
-      // filename: utils.assetsPath('[name].[contenthash].css')
+      // filename: utils.assetsPath('[name].[contenthash].css'),
       filename: utils.assetsPath('[name].wxss')
     }),
     // Compress extracted CSS. We are using this plugin so that possible

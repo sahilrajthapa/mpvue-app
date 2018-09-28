@@ -1,5 +1,6 @@
 //var url = 'https://phoneixredirect.herokuapp.com';
- var url= "http://localhost:3000"
+//  var url= "http://120.79.226.222"
+var url = "http://localhost:3000"
 
 var config = {
     

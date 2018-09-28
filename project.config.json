@@ -7,10 +7,10 @@
 		"minified": false,
 		"newFeature": true
 	},
-	"miniprogramRoot": "./dist/",
+	"miniprogramRoot": "dist/",
 	"compileType": "miniprogram",
 	"appid": "wxc47d0eabcf02fe51",
-	"projectname": "phoenix",
+	"projectname": "mp-vue",
 	"condition": {
 		"search": {
 			"current": -1,

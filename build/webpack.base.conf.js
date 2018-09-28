@@ -92,13 +92,8 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[ext]')
         }
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'css-loader'
-        ]
-     }
+      }
+     
     ]
   },
   plugins: [

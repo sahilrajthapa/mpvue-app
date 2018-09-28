@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <view class="page__bd page__bd_spacing" v-if="questions.length>0">
-      <view class="weui-panel" v-for="question in questions">
+      <view class="weui-panel" v-for="(question, index) in questions" :key="index">
         <navigator  href="/pages/singleQuest/main" @click="selectQuestion(question)" 
            class="weui-media-box weui-media-box_appmsg"
            hover-class="weui-cell_active">

@@ -5,7 +5,7 @@
         <!-- for text input --> 
         <view v-if="question.formType=='text'" >
         <view v-if="question.options.length!=0" class="weui-cell weui-cell_input">
-           <label v-for="(item,index) in question.options" class="weui-cell__bd">
+           <label v-for="(item,index) in question.options" :key="index" class="weui-cell__bd">
               <text>{{item.label}}</text>
               <input class="weui-input" :name="item.label" placeholder="item.name" value=""/>
            </label>
@@ -17,7 +17,7 @@
         <view v-else-if="question.formType=='radio'"> 
             <radio-group :name="question.label" @change="inputChange" >
                 <view>
-                    <label class="weui-cell weui-check__label" v-for="(item, index) in question.options" >
+                    <label class="weui-cell weui-check__label" v-for="(item, index) in question.options" :key="index">
                         <radio class="weui-cell__ft weui-cell__ft_in-radio" :value="index"></radio>
                         <text class="weui-cell__bd">{{item.label}}</text>
                     </label>
@@ -28,7 +28,7 @@
         <!-- for multiselect input -->
         <view v-else-if="question.formType=='multi-select'">   
             <checkbox-group :name="question.label">
-                <view  v-for="(item, index) in question.options" >
+                <view  v-for="(item, index) in question.options" :key="index">
                     <label class="weui-cell weui-check__label">
                         <checkbox :name="index" :value="index"/>
                         <view class="weui-cell__bd">{{item.label}}</view>              
