@@ -4,8 +4,9 @@ import store from './store'
 import '../static/style/weui.css'
 
 Vue.config.productionTip = false
-Vue.prototype.$store = store
 App.mpType = 'app'
+
+Vue.prototype.$store = store
 
 const app = new Vue({
     store,
