@@ -1,16 +1,16 @@
-const SET_SID = 'SET_SID'
+const SET_TOKEN = 'SET_TOKEN'
 const SET_VERIFICATION = 'SET_VERIFICATION'
 const SET_USER_INFO = 'SET_USER_INFO'
 
 const state={
-    sid: '',
+    token: '',
     verified: false,
     userInfo: {}
 }
 
 const mutations={
-  [SET_SID] (state,sid){
-      state.sid=sid
+  [SET_TOKEN] (state,token){
+      state.token = token
   },
   [SET_VERIFICATION] (state, verification) {
     state.verified = verification
@@ -21,8 +21,8 @@ const mutations={
 }
 
 const actions={
-    setSid({commit},sid){
-        commit(SET_SID,sid)
+    setToken({commit},token){
+        commit(SET_TOKEN,token)
     },
     setVerification({commit}, verification) {
          commit(SET_VERIFICATION, verification)

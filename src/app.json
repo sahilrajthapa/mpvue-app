@@ -5,7 +5,8 @@
     "pages/counter/main",
     "pages/profile/main",
     "pages/question/main",
-    "pages/singleQuest/main"
+    "pages/singleQuest/main",
+    "pages/sugPress/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

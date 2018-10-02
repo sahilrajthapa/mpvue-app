@@ -6,9 +6,10 @@ var config = {
     
     api: {
          question:"/question",
-         login:"/login",
-         signup:"/signup",
-         answer:"/answer"
+         login:"/login/v2",
+         signup:"/v2/signup",
+         answer:"/answer",
+         sugPress: "/sugpress"
     }
 };
 

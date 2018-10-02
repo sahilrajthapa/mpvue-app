@@ -18,6 +18,28 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
+
+/* ==================================== Validate Form ================================== */
+
+// export function validateSystolic(value) {
+//  let systolicErr;
+//  let condition = (value >= 40 && value <= 100);
+
+//   if (value === "") {
+//      systolicErr = "Enter a number";
+//     return systolicErr;
+//   }
+//   if (isNaN(parseFloat(value))) {
+//      systolicErr = "Enter a valid Number";
+//      return systolicErr;
+//   }
+ 
+//   if (!condition) {
+//      systolicErr = "Numbers should be between 40 and 100";
+//      return systolicErr;
+//   }
+// }
+
 export default {
   formatNumber,
   formatTime

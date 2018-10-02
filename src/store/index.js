@@ -8,8 +8,6 @@ import profile from './modules/profile'
 Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== 'production'
 
-Vue.prototype.$store = store
-
 const store=new Vuex.Store({
     plugins: debug ? [ 
         createLogger()

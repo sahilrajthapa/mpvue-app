@@ -1,6 +1,6 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
+  <div class="container">
+    <a href="/pages/sugPress/main" class="counter">Check your blood level</a>
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
@@ -24,83 +24,87 @@
 </template>
 
 <script>
-import card from '@/components/card'
-import config from '../../config/config'
-import {mapActions} from 'vuex'
+import card from "@/components/card";
+import config from "../../config/config";
+import { mapActions } from "vuex";
 export default {
-  data () {
+  data() {
     return {
-      motto: 'Hello World',
+      motto: "Hello World",
       userInfo: {},
-      sid:"",
-      jsCodeDone:false,
-      userInfoDone:false,
-      resData:{}
-    }
+      sid: "",
+      jsCodeDone: false,
+      userInfoDone: false,
+      resData: {}
+    };
   },
 
   components: {
     card
   },
 
-  methods: {   
-    ...mapActions('profile',[
-       'setSid',
-        'setVerification'
-    ]),
+  methods: {
+    ...mapActions("profile", ["setToken", "setVerification"]),
 
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
+    bindViewTap() {
+      const url = "../logs/main";
+      wx.navigateTo({ url });
     },
 
-    setUserInfo(){
-
-    },
-    getUserInfo () {
-      let _this=this;
+    setUserInfo() {},
+    getUserInfo() {
+      let _this = this;
       wx.login({
-        success: (res) => {
-          if(res.code){
+        success: res => {
+          if (res.code) {
             //make api call in backend and getting sid
             wx.request({
-                url: config.api.login,
-                data: {
-                    code: res.code
-                },
-                
-                success: function(res) {
-                    _this.setSid(res.data.sid);
-                    _this.setVerification(res.data.verified)
-                },
-                fail:function(error){
-                    console.log("err",error)
+              url: config.api.login,
+              data: {
+                code: res.code
+              },
+
+              success: function(res) {
+                console.log("login request: ", res);
+                if (res.data.token) {
+                  _this.setToken(res.data.token);
                 }
-            })
+                if (res.data.tempToken) {
+                  try {
+                    wx.setStorageSync("tempToken", res.data.tempToken);
+                  } catch (e) {
+                    console.log('Set Storage err: ', e)
+                  }
+                }
+                _this.setVerification(res.data.verified);
+              },
+              fail: function(error) {
+                console.log("err", error);
+              }
+            });
           }
-          
         }
-      })
+      });
     },
-    
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
+
+    clickHandle(msg, ev) {
+      console.log("clickHandle:", msg, ev);
     }
   },
 
-  created () {
+  created() {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+    this.getUserInfo();
   },
   onUnload() {
-     this.motto = '';
-     console.log('unloaded', this)
+    this.motto = "";
+    console.log("unloaded", this);
   },
   onHide() {
-     console.log('onHide',this)
-     this.motto = '';
+    console.log("onHide", this);
+    this.motto = "";
   }
-}
+};
 </script>
 
 <style scoped>
