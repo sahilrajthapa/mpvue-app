@@ -45,18 +45,18 @@ export default {
     return {
       userRecord: [],
       date: {
-        start: "",
-        end: ""
+       start:  '',
+        end: ''
       }
     };
   },
   computed: {
     ...mapState("profile", ["token"]),
-    defaultDate() {
-      let newDate = new Date();
-      let startDate = newDate.setDate(newDate.getDate() - 7);
-      this.date.end = newDate.toISOString().split("T")[0];
-      this.date.start = new Date(startDate).toISOString().split("T")[0];
+     defaultDate() {
+       let newDate = new Date();
+       this.date.end  = newDate.toISOString().split('T')[0];
+       let startDate = newDate.setDate(newDate.getDate() - 7);
+       this.date.start =  new Date(startDate).toISOString().split('T')[0];
     }
   },
   onLoad() {
@@ -84,35 +84,35 @@ export default {
   },
   methods: {
     bindDateChange(e) {
-      if (e.mp.currentTarget.id === "start") {
-        this.date.start = e.mp.detail.value;
-      } else {
-        this.date.end = e.mp.detail.value;
-      }
+      if(e.mp.currentTarget.id === "start") {
+         this.date.start = e.mp.detail.value;
+      } else  {
+         this.date.end = e.mp.detail.value;
+      }   
     },
-    bindSubmit(e) {
-      e.preventDefault();
-      let _this = this,
-        { token, date } = _this;
-      wx.showLoading({
-        title: "Loading",
-        mask: true
-      });
-      wx.request({
-        url: `${config.api.sugPress}/${date.start}/${date.end}`,
-        header: {
-          "x-access-token": token,
-          "content-type": "application/json"
-        },
-        success: function(res) {
-          console.log(res);
-          wx.hideLoading();
-          _this.userRecord = res.data.result;
-        },
-        fail: function(err) {
-          console.log("records err", err);
-        }
-      });
+    bindSubmit() {
+      console.log('submitted')
+       let _this = this,
+        {token, date } = _this;
+    wx.showLoading({
+      title: "Loading",
+      mask: true
+    });
+    wx.request({
+      url: `${config.api.sugPress}/${date.start}/${date.end}`,
+      header: {
+        "x-access-token": token,
+        "content-type": "application/json"
+      },
+      success: function(res) {
+        console.log(res);
+        wx.hideLoading();
+        _this.userRecord = res.data.result;
+      },
+      fail: function(err) {
+        console.log("records err", err);
+      }
+    });
     }
   }
 };
