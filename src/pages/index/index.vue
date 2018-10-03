@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <a href="/pages/sugPress/main" class="counter">Check your blood level</a>
+    <a href="/pages/record/main" class="counter">Get your latest report </a>
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">

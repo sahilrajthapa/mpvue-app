@@ -1,6 +1,6 @@
 <template>
    
-    <form class="container" @submit="onSubmit" report-submit="true">
+    <form class="container" @submit="bindSubmit" report-submit="true">
             
     <div class="form-group">
         <label>Systolic Level:</label>
@@ -81,6 +81,7 @@ export default {
       }
     },
     validateDiastolic(value) {
+      console.log('validate')
       this.errors.diastolicErr = "";
       let condition = value >= 40 && value <= 100;
       if (value === "") {
@@ -114,7 +115,7 @@ export default {
         return;
       }
     },
-    onSubmit(e) {
+    bindSubmit(e) {
       e.preventDefault();
       let _this = this,
         { systolic, diastolic, sugarLevel, token } = _this,
@@ -140,6 +141,9 @@ export default {
           _this.systolic = "";
           _this.diastolic = "";
           _this.sugarLevel = "";
+          wx.navigateTo({
+            url: "/pages/record/main"
+          });
         },
         fail: function(error) {
           console.log("err", error);
