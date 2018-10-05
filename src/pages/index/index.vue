@@ -1,20 +1,45 @@
 <template>
   <div class="container">
-    <swiper/>
-    <a href="/pages/sugPress/main" class="counter">Check your blood level</a>
-    <a href="/pages/record/main" class="counter">Get your latest report </a>
-    
+     <div class="swiper">
+      <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
+        <block v-for="(item, index) in banner " :key="index">
+          <swiper-item class="swiper-item">
+            <image :src="item.imageUrl" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </div>
+    <div class="btn-wrap">
+      <a href="/pages/sugPress/main" class="btn-default"> + Check Blood</a>
+      <a href="/pages/record/main" class="btn-default"> + Get Report </a>
+    </div>
   </div>
 </template>
 
 <script>
 import card from "@/components/card";
-import swiper from "@/components/swiper"
 import config from "../../config/config";
 import { mapActions } from "vuex";
 export default {
   data() {
     return {
+      banner: [
+        {
+          id: 1,
+          imageUrl:
+            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"
+        },
+        {
+          id: 2,
+          imageUrl:
+            "http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"
+        },
+        {
+          id: 3,
+          imageUrl:
+            "http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg"
+        }
+      ],
       motto: "Hello World",
       userInfo: {},
       sid: "",
@@ -25,8 +50,7 @@ export default {
   },
 
   components: {
-    card,
-    swiper
+    card
   },
 
   methods: {
@@ -59,7 +83,7 @@ export default {
                   try {
                     wx.setStorageSync("tempToken", res.data.tempToken);
                   } catch (e) {
-                    console.log('Set Storage err: ', e)
+                    console.log("Set Storage err: ", e);
                   }
                 }
                 _this.setVerification(res.data.verified);
@@ -81,19 +105,49 @@ export default {
   created() {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo();
-  },
-  onUnload() {
-    this.motto = "";
-    console.log("unloaded", this);
-  },
-  onHide() {
-    console.log("onHide", this);
-    this.motto = "";
   }
 };
 </script>
 
 <style scoped>
+.btn-wrap {
+   margin: 50px 0
+}
+.container {
+  padding: 0;
+}
+.swiper {
+  width: 100%;
+  height: 417rpx;
+  /* margin-top: 80rpx; */
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-item {
+  width: 100%;
+  height: 100%;
+}
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-default {
+  letter-spacing: 2rpx;
+  padding: 15rpx 30rpx;
+  background-color: #6190c6;
+  color: #fff;
+  line-height: 1.5;
+  border-radius: 60rpx;
+  font-size: 36rpx;
+  margin-bottom: 40rpx;
+  width: 145px;
+  text-align: center
+}
 .userinfo {
   display: flex;
   flex-direction: column;

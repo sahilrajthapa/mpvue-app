@@ -1,24 +1,33 @@
 <template>
-   
-    <form class="container" @submit="bindSubmit" report-submit="true">
-            
-    <div class="form-group">
-        <label>Systolic Level:</label>
-        <input type="number" class="form-control" v-model.number="systolic" placeholder="Systolic Level" @blur="validateSystolic(systolic)"/>
-        <p v-if="!isEmptyString(errors.systolicErr)">{{errors.systolicErr}}</p>      
+
+    <div class="pg-container">
+        <div class="pg-text">
+          <p>POST YOUR </p>
+          <p class="pg-title">Blood & Sugar level</p>
+        </div>
+        <div class="pg-form">
+          <form @submit="bindSubmit" report-submit="true">
+          <div class="form-group">
+              <label class="pg-label">Systolic Level:</label>
+              <input type="number" class="form-control" v-model.number="systolic" placeholder="Systolic Level" @blur="validateSystolic(systolic)"/>
+              <p v-if="!isEmptyString(errors.systolicErr)">{{errors.systolicErr}}</p>
+          </div>
+          <div class="form-group">
+              <label class="pg-label">Systolic Level:</label>
+              <input type="number" class="form-control" v-model.number="diastolic" placeholder="Diastolic Level" @blur="validateDiastolic(diastolic)" />
+              <p v-if="!isEmptyString(errors.diastolicErr)">{{errors.diastolicErr}}</p>
+          </div>
+          <div class="form-group">
+              <label class="pg-label">Sugar Level:</label>
+              <input type="number" class="form-control" v-model.number="sugarLevel" placeholder="Diastolic Level"  @blur="validateSugar(sugarLevel)" />
+              <p v-if="!isEmptyString(errors.sugarLevelErr)">{{errors.sugarLevelErr}}</p>
+          </div>
+            <button formType="submit" :disabled="disableButton" class="btn-default">Submit</button>
+        </form>
+        </div>
+
     </div>
-    <div class="form-group">
-        <label>Systolic Level:</label>
-        <input type="number" class="form-control" v-model.number="diastolic" placeholder="Diastolic Level" @blur="validateDiastolic(diastolic)" />
-        <p v-if="!isEmptyString(errors.diastolicErr)">{{errors.diastolicErr}}</p>
-    </div>
-    <div class="form-group">
-        <label>Sugar Level:</label>
-        <input type="number" class="form-control" v-model.number="sugarLevel" placeholder="Diastolic Level"  @blur="validateSugar(sugarLevel)" />
-        <p v-if="!isEmptyString(errors.sugarLevelErr)">{{errors.sugarLevelErr}}</p>
-    </div>
-      <button formType="submit" :disabled="disableButton">Submit</button>
-    </form>
+
 </template>
 
 <script>
@@ -81,7 +90,7 @@ export default {
       }
     },
     validateDiastolic(value) {
-      console.log('validate')
+      console.log("validate");
       this.errors.diastolicErr = "";
       let condition = value >= 40 && value <= 100;
       if (value === "") {
@@ -155,14 +164,54 @@ export default {
 </script>
 
 <style scoped>
+.pg-container {
+  padding: 100px 0;
+}
+.pg-text {
+  width: 225px;
+  margin: 0 auto;
+}
+.pg-title {
+  color: #6190c6;
+  margin-bottom: 20px;
+  font-weight:bold;
+}
+
+.pg-form {
+  width: 225px;
+  margin: 0 auto;
+}
+
+.pg-label {
+  margin-bottom: 6px;
+  display: block;
+  margin-top: 12px;
+}
+
 .form-control {
   display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
+  border-bottom: 0.5px solid #ccc;
+  margin-bottom: 10px;
 }
 
 .form-group p {
   color: red;
+}
+
+.btn-default {
+  letter-spacing: 1px;
+  padding: 8px 15px;
+  background-color: #6190c6;
+  color: #fff;
+  line-height: 1.5;
+  border-radius: 30px;
+  font-size: 18px;
+  margin-top: 40px;
+  width: 225px;
+  text-align: center;
+}
+.btn-default[disabled] {
+  background-color: #6f90b6;
+  color: #fff;
 }
 </style>

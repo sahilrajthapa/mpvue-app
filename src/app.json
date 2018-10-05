@@ -10,9 +10,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#6190c6",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "#fff"
   },
   "tabBar": {
     "color": "#5f616c",
@@ -26,7 +26,7 @@
             "text": "首页",
             "iconPath": "static/icons/home.png",
             "selectedIconPath": "static/icons/homeSelected.png"
-        }, 
+        },
         {
             "pagePath": "pages/question/main",
             "text": "购物车",

@@ -1,27 +1,24 @@
 <template>
  <div>
     <div v-if="!verified" class="auth-user">
-            <button class="weui-btn" type="primary" open-type="getUserInfo"  @getuserinfo="bindGetUserInfo"> Get Verified </button>  
+       <button class="btn-default" open-type="getUserInfo"  @getuserinfo="bindGetUserInfo"> Get Verified </button>
     </div>
-    
     <div v-else>
         <div v-if="!isEmpty(userInfo)" class="profile">
-            <div class="profile-info">
+              <div class="profile-info">
               <div class="profile-img">
                   <open-data type="userAvatarUrl" ></open-data>
-              </div>   
+              </div>
               <div  class="profile-name">
                  <open-data type="userNickName"></open-data>
-              </div>      
+              </div>
               <div class="profile-gender">
                   <open-data type="userGender"></open-data>
-              </div>          
+              </div>
             </div>
         </div>
-    </div>  
+     </div>
  </div>
- 
- 
 </template>
 
 <script>
@@ -39,24 +36,6 @@ export default {
     ...mapActions("profile", ["setUserInfo", "setVerification"]),
     isEmpty(obj) {
       return Object.keys(obj).length === 0;
-    },
-    checkForAuthorization() {
-      // let _this = this;
-      // wx.getSetting({
-      //   success: function(res) {
-      //     if (res.authSetting["scope.userInfo"]) {
-      //       wx.getUserInfo({
-      //         success: function(res) {
-      //           console.log("Authorized. getUserInfo can be directly called to retrieve profile");
-      //           _this.setUserInfo(res.userInfo);
-      //         }
-      //       });
-      //     }
-      //   },
-      //   fail: function(res) {
-      //     console.log("Err: User has not been authorized");
-      //   }
-      // });
     },
     bindGetUserInfo: function(e) {
       let _this = this,
@@ -93,6 +72,7 @@ export default {
             _this.setVerification(res.data.verified);
           },
           fail: function(error) {
+            wx.hideLoading();
             console.log("signup err", error);
           }
         });
@@ -110,16 +90,28 @@ export default {
   top: 50%;
 }
 
+.btn-default {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 15px;
+  background-color: #6190c6;
+  color: #fff;
+  line-height: 1.5;
+  border-radius: 30px;
+  font-size: 18px;
+  width: 225px;
+  text-align: center;
+}
 .profile {
   width: 100%;
-  height: 280rpx;
+  height: 140px;
   display: flex;
   align-items: center;
   background: #fff;
-  padding: 0 30rpx;
+  padding: 0 15px;
   box-sizing: border-box;
-  border-top: 1rpx solid rgba(0, 0, 0, 0.15);
-  margin-bottom: 25rpx;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 12px;
 }
 
 .profile-info {
@@ -128,8 +120,8 @@ export default {
   text-align: center;
 }
 .profile .profile-info .profile-img {
-  height: 148rpx;
-  width: 148rpx;
+  height: 75px;
+  width: 75px;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
