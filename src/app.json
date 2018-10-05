@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/main",
     "pages/logs/main",
-    "pages/counter/main",
     "pages/profile/main",
     "pages/question/main",
     "pages/singleQuest/main",
