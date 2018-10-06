@@ -118,8 +118,7 @@ export default {
 }
 .swiper {
   width: 100%;
-  height: 417rpx;
-  /* margin-top: 80rpx; */
+  height: 225px;
 }
 
 .swiper-container {
@@ -137,14 +136,14 @@ export default {
 }
 
 .btn-default {
-  letter-spacing: 2rpx;
-  padding: 15rpx 30rpx;
+  letter-spacing: 1px;
+  padding: 8px 16px;
   background-color: #6190c6;
   color: #fff;
   line-height: 1.5;
-  border-radius: 60rpx;
-  font-size: 36rpx;
-  margin-bottom: 40rpx;
+  border-radius: 30px;
+  font-size: 18px;
+  margin-bottom: 20px;
   width: 145px;
   text-align: center
 }
@@ -155,9 +154,9 @@ export default {
 }
 
 .userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+  width: 64px;
+  height: 64px;
+  margin: 10px;
   border-radius: 50%;
 }
 

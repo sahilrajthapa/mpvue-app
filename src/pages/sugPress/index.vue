@@ -2,27 +2,27 @@
 
     <div class="pg-container">
         <div class="pg-text">
-          <p>POST YOUR </p>
+          <p style="font-weight: 700">POST YOUR </p>
           <p class="pg-title">Blood & Sugar level</p>
         </div>
         <div class="pg-form">
           <form @submit="bindSubmit" report-submit="true">
           <div class="form-group">
-              <label class="pg-label">Systolic Level:</label>
+              <label class="pg-label">Systolic Level</label>
               <input type="number" class="form-control" v-model.number="systolic" placeholder="Systolic Level" @blur="validateSystolic(systolic)"/>
               <p v-if="!isEmptyString(errors.systolicErr)">{{errors.systolicErr}}</p>
           </div>
           <div class="form-group">
-              <label class="pg-label">Systolic Level:</label>
+              <label class="pg-label">Diastolic Level</label>
               <input type="number" class="form-control" v-model.number="diastolic" placeholder="Diastolic Level" @blur="validateDiastolic(diastolic)" />
               <p v-if="!isEmptyString(errors.diastolicErr)">{{errors.diastolicErr}}</p>
           </div>
           <div class="form-group">
-              <label class="pg-label">Sugar Level:</label>
-              <input type="number" class="form-control" v-model.number="sugarLevel" placeholder="Diastolic Level"  @blur="validateSugar(sugarLevel)" />
+              <label class="pg-label">Sugar Level</label>
+              <input type="number" class="form-control" v-model.number="sugarLevel" placeholder="Sugar Level"  @blur="validateSugar(sugarLevel)" />
               <p v-if="!isEmptyString(errors.sugarLevelErr)">{{errors.sugarLevelErr}}</p>
           </div>
-            <button formType="submit" :disabled="disableButton" class="btn-default">Submit</button>
+            <button type="submit" :disabled="disableButton" class="btn-default">Submit</button>
         </form>
         </div>
 
@@ -170,11 +170,11 @@ export default {
 .pg-text {
   width: 225px;
   margin: 0 auto;
+  text-align: center
 }
 .pg-title {
   color: #6190c6;
-  margin-bottom: 20px;
-  font-weight:bold;
+  margin-bottom: 40px;
 }
 
 .pg-form {
@@ -206,12 +206,12 @@ export default {
   line-height: 1.5;
   border-radius: 30px;
   font-size: 18px;
-  margin-top: 40px;
+  margin-top: 50px;
   width: 225px;
   text-align: center;
 }
 .btn-default[disabled] {
-  background-color: #6f90b6;
+  background-color: #76aff0;
   color: #fff;
 }
 </style>
