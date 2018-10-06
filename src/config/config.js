@@ -9,7 +9,8 @@ var config = {
          signup:"/v2/signup",
          answer:"/answer",
          sugPress: "/sugpress"
-    }
+    },
+    key: '10320648-1fda4b61f6be628baac224e88'
 };
 
 for (var key in config.api) {

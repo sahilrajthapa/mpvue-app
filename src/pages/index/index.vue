@@ -4,7 +4,7 @@
       <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
         <block v-for="(item, index) in banner " :key="index">
           <swiper-item class="swiper-item">
-            <image :src="item.imageUrl" class="slide-image" />
+            <image :src="item.webformatURL" class="slide-image" />
           </swiper-item>
         </block>
       </swiper>
@@ -23,23 +23,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      banner: [
-        {
-          id: 1,
-          imageUrl:
-            "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg"
-        },
-        {
-          id: 2,
-          imageUrl:
-            "http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg"
-        },
-        {
-          id: 3,
-          imageUrl:
-            "http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg"
-        }
-      ],
+      banner: [],
       motto: "Hello World",
       userInfo: {},
       sid: "",
@@ -55,19 +39,15 @@ export default {
 
   methods: {
     ...mapActions("profile", ["setToken", "setVerification"]),
-
     bindViewTap() {
       const url = "../logs/main";
       wx.navigateTo({ url });
     },
-
-    setUserInfo() {},
-    getUserInfo() {
+    getCode() {
       let _this = this;
       wx.login({
         success: res => {
           if (res.code) {
-            //make api call in backend and getting sid
             wx.request({
               url: config.api.login,
               data: {
@@ -104,7 +84,29 @@ export default {
 
   created() {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo();
+    this.getCode();
+  },
+  mounted () {
+     let _this = this;
+     wx.showLoading({
+        title: 'Loading',
+        mask: true
+     })
+     wx.request({
+        url: `https://pixabay.com/api/?key=${config.key}&q=doctor&image_type=photo&per_page=7`,
+        method: 'GET',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: function(res) {
+           wx.hideLoading();
+           _this.banner = res.data.hits
+        },
+        fail: function(err) {
+          console.log('err:', err);
+          wx.hideLoading()
+        }
+     })
   }
 };
 </script>
@@ -118,7 +120,7 @@ export default {
 }
 .swiper {
   width: 100%;
-  height: 225px;
+  height: 250px;
 }
 
 .swiper-container {
