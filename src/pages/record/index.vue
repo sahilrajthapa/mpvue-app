@@ -17,7 +17,7 @@
          </div>
        </div>
         <div class="pg-line"></div>
-       <button class="btn-default" type="submit" @click="bindSubmit">Submit</button>
+       <button class="btn-default" @click="bindSubmit"><span class="iconfont icon-submit" style="margin-right: 7px"></span>Submit</button>
         <p>Your's latest record</p>
         <div v-for="record in userRecord" :key="record.id">
             <pressure :pressure="record.pressure"></pressure>
@@ -88,7 +88,6 @@ export default {
       }
     },
     bindSubmit() {
-      console.log("submitted");
       let _this = this,
         { token, date } = _this;
       wx.showLoading({

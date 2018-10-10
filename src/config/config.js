@@ -1,5 +1,5 @@
- var url= "http://120.79.226.222"
-// var url = "http://localhost:3000"
+//  var url= "http://120.79.226.222"
+var url = "http://localhost:3000"
 // var url="http://10.0.2.2:3000"
 
 var config = {

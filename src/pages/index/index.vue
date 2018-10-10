@@ -10,8 +10,8 @@
       </swiper>
     </div>
     <div class="btn-wrap">
-      <a href="/pages/sugPress/main" class="btn-default"> + Check Blood</a>
-      <a href="/pages/record/main" class="btn-default"> + Get Report </a>
+      <a href="/pages/sugPress/main" class="btn-default"> <span class="iconfont icon-submit"></span> Check Blood</a>
+      <a href="/pages/record/main" class="btn-default"> <span class="iconfont icon-submit"></span> Get Report </a>
     </div>
   </div>
 </template>
